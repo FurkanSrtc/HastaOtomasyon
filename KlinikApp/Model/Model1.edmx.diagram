@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1ff14995011246099b17d85f6495cb75" Name="Diagram1">
+        <EntityTypeShape EntityType="KlinikDBModel.Cinsiyet" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="KlinikDBModel.Hasta" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="KlinikDBModel.Hizmet" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="KlinikDBModel.Personel" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KlinikDBModel.Randevu" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="KlinikDBModel.RDurum" Width="1.5" PointX="3" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="KlinikDBModel.RSonuc" Width="1.5" PointX="7.5" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KlinikDBModel.RSTur" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="KlinikDBModel.FK_Hasta_Cinsiyet_CID" ManuallyRouted="false" />
+        <AssociationConnector Association="KlinikDBModel.FK_Personel_Cinsiyet_CID" ManuallyRouted="false" />
+        <AssociationConnector Association="KlinikDBModel.FK_Randevu_Hasta_HastaID" ManuallyRouted="false" />
+        <AssociationConnector Association="KlinikDBModel.FK_Randevu_Hizmet_HizmetID" ManuallyRouted="false" />
+        <AssociationConnector Association="KlinikDBModel.FK_Randevu_Personel_PersonelID" ManuallyRouted="false" />
+        <AssociationConnector Association="KlinikDBModel.FK_Randevu_RDurum_DurumID" ManuallyRouted="false" />
+        <AssociationConnector Association="KlinikDBModel.FK_RSonuc_Randevu_RandevuID" ManuallyRouted="false" />
+        <AssociationConnector Association="KlinikDBModel.FK_RSonuc_RSTur_TurID" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,573 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="KlinikDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cinsiyet">
+          <Key>
+            <PropertyRef Name="C_ID" />
+          </Key>
+          <Property Name="C_ID" Type="tinyint" Nullable="false" />
+          <Property Name="Cinsiyet" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Hasta">
+          <Key>
+            <PropertyRef Name="H_ID" />
+          </Key>
+          <Property Name="H_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="H_AD" Type="varchar" MaxLength="50" />
+          <Property Name="H_SOYAD" Type="varchar" MaxLength="50" />
+          <Property Name="H_DTARIH" Type="date" />
+          <Property Name="H_TC" Type="char" MaxLength="11" />
+          <Property Name="H_TEL" Type="varchar" MaxLength="13" />
+          <Property Name="H_ADRES" Type="nvarchar" MaxLength="255" />
+          <Property Name="H_CID" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="Hizmet">
+          <Key>
+            <PropertyRef Name="H_ID" />
+          </Key>
+          <Property Name="H_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="H_AD" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Personel">
+          <Key>
+            <PropertyRef Name="P_ID" />
+          </Key>
+          <Property Name="P_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="P_AD" Type="varchar" MaxLength="50" />
+          <Property Name="P_SOYAD" Type="varchar" MaxLength="50" />
+          <Property Name="P_DTARIH" Type="date" />
+          <Property Name="P_TC" Type="char" MaxLength="11" />
+          <Property Name="P_TEL" Type="varchar" MaxLength="13" />
+          <Property Name="P_ADRES" Type="varchar" MaxLength="255" />
+          <Property Name="P_EMAIL" Type="varchar" MaxLength="50" />
+          <Property Name="P_SIFRE" Type="nvarchar" MaxLength="50" />
+          <Property Name="P_CID" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="Randevu">
+          <Key>
+            <PropertyRef Name="R_ID" />
+          </Key>
+          <Property Name="R_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="R_PERSONELID" Type="int" />
+          <Property Name="R_HASTAID" Type="int" />
+          <Property Name="R_HIZMETID" Type="int" />
+          <Property Name="R_DURUMID" Type="tinyint" />
+          <Property Name="R_TARIH" Type="smalldatetime" />
+          <Property Name="R_ACIKLAMA" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="RDurum">
+          <Key>
+            <PropertyRef Name="D_ID" />
+          </Key>
+          <Property Name="D_ID" Type="tinyint" Nullable="false" />
+          <Property Name="D_AD" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="RSonuc">
+          <Key>
+            <PropertyRef Name="S_ID" />
+          </Key>
+          <Property Name="S_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="S_RANDEVUID" Type="int" />
+          <Property Name="S_TURID" Type="tinyint" />
+          <Property Name="S_ACIKLAMA" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="RSTur">
+          <Key>
+            <PropertyRef Name="T_ID" />
+          </Key>
+          <Property Name="T_ID" Type="tinyint" Nullable="false" />
+          <Property Name="T_AD" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Hasta_Cinsiyet_CID">
+          <End Role="Cinsiyet" Type="Self.Cinsiyet" Multiplicity="0..1" />
+          <End Role="Hasta" Type="Self.Hasta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cinsiyet">
+              <PropertyRef Name="C_ID" />
+            </Principal>
+            <Dependent Role="Hasta">
+              <PropertyRef Name="H_CID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Personel_Cinsiyet_CID">
+          <End Role="Cinsiyet" Type="Self.Cinsiyet" Multiplicity="0..1" />
+          <End Role="Personel" Type="Self.Personel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cinsiyet">
+              <PropertyRef Name="C_ID" />
+            </Principal>
+            <Dependent Role="Personel">
+              <PropertyRef Name="P_CID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Randevu_Hasta_HastaID">
+          <End Role="Hasta" Type="Self.Hasta" Multiplicity="0..1" />
+          <End Role="Randevu" Type="Self.Randevu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hasta">
+              <PropertyRef Name="H_ID" />
+            </Principal>
+            <Dependent Role="Randevu">
+              <PropertyRef Name="R_HASTAID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Randevu_Hizmet_HizmetID">
+          <End Role="Hizmet" Type="Self.Hizmet" Multiplicity="0..1" />
+          <End Role="Randevu" Type="Self.Randevu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hizmet">
+              <PropertyRef Name="H_ID" />
+            </Principal>
+            <Dependent Role="Randevu">
+              <PropertyRef Name="R_HIZMETID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Randevu_Personel_PersonelID">
+          <End Role="Personel" Type="Self.Personel" Multiplicity="0..1" />
+          <End Role="Randevu" Type="Self.Randevu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personel">
+              <PropertyRef Name="P_ID" />
+            </Principal>
+            <Dependent Role="Randevu">
+              <PropertyRef Name="R_PERSONELID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Randevu_RDurum_DurumID">
+          <End Role="RDurum" Type="Self.RDurum" Multiplicity="0..1" />
+          <End Role="Randevu" Type="Self.Randevu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RDurum">
+              <PropertyRef Name="D_ID" />
+            </Principal>
+            <Dependent Role="Randevu">
+              <PropertyRef Name="R_DURUMID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RSonuc_Randevu_RandevuID">
+          <End Role="Randevu" Type="Self.Randevu" Multiplicity="0..1" />
+          <End Role="RSonuc" Type="Self.RSonuc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Randevu">
+              <PropertyRef Name="R_ID" />
+            </Principal>
+            <Dependent Role="RSonuc">
+              <PropertyRef Name="S_RANDEVUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RSonuc_RSTur_TurID">
+          <End Role="RSTur" Type="Self.RSTur" Multiplicity="0..1" />
+          <End Role="RSonuc" Type="Self.RSonuc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RSTur">
+              <PropertyRef Name="T_ID" />
+            </Principal>
+            <Dependent Role="RSonuc">
+              <PropertyRef Name="S_TURID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KlinikDBModelStoreContainer">
+          <EntitySet Name="Cinsiyet" EntityType="Self.Cinsiyet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hasta" EntityType="Self.Hasta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hizmet" EntityType="Self.Hizmet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Personel" EntityType="Self.Personel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Randevu" EntityType="Self.Randevu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RDurum" EntityType="Self.RDurum" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RSonuc" EntityType="Self.RSonuc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RSTur" EntityType="Self.RSTur" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Hasta_Cinsiyet_CID" Association="Self.FK_Hasta_Cinsiyet_CID">
+            <End Role="Cinsiyet" EntitySet="Cinsiyet" />
+            <End Role="Hasta" EntitySet="Hasta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Personel_Cinsiyet_CID" Association="Self.FK_Personel_Cinsiyet_CID">
+            <End Role="Cinsiyet" EntitySet="Cinsiyet" />
+            <End Role="Personel" EntitySet="Personel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Randevu_Hasta_HastaID" Association="Self.FK_Randevu_Hasta_HastaID">
+            <End Role="Hasta" EntitySet="Hasta" />
+            <End Role="Randevu" EntitySet="Randevu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Randevu_Hizmet_HizmetID" Association="Self.FK_Randevu_Hizmet_HizmetID">
+            <End Role="Hizmet" EntitySet="Hizmet" />
+            <End Role="Randevu" EntitySet="Randevu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Randevu_Personel_PersonelID" Association="Self.FK_Randevu_Personel_PersonelID">
+            <End Role="Personel" EntitySet="Personel" />
+            <End Role="Randevu" EntitySet="Randevu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Randevu_RDurum_DurumID" Association="Self.FK_Randevu_RDurum_DurumID">
+            <End Role="RDurum" EntitySet="RDurum" />
+            <End Role="Randevu" EntitySet="Randevu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RSonuc_Randevu_RandevuID" Association="Self.FK_RSonuc_Randevu_RandevuID">
+            <End Role="Randevu" EntitySet="Randevu" />
+            <End Role="RSonuc" EntitySet="RSonuc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RSonuc_RSTur_TurID" Association="Self.FK_RSonuc_RSTur_TurID">
+            <End Role="RSTur" EntitySet="RSTur" />
+            <End Role="RSonuc" EntitySet="RSonuc" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KlinikDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cinsiyet">
+          <Key>
+            <PropertyRef Name="C_ID" />
+          </Key>
+          <Property Name="C_ID" Type="Byte" Nullable="false" />
+          <Property Name="Cinsiyet1" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Hasta" Relationship="Self.FK_Hasta_Cinsiyet_CID" FromRole="Cinsiyet" ToRole="Hasta" />
+          <NavigationProperty Name="Personel" Relationship="Self.FK_Personel_Cinsiyet_CID" FromRole="Cinsiyet" ToRole="Personel" />
+        </EntityType>
+        <EntityType Name="Hasta">
+          <Key>
+            <PropertyRef Name="H_ID" />
+          </Key>
+          <Property Name="H_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="H_AD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="H_SOYAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="H_DTARIH" Type="DateTime" Precision="0" />
+          <Property Name="H_TC" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="H_TEL" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="H_ADRES" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="H_CID" Type="Byte" />
+          <NavigationProperty Name="Cinsiyet" Relationship="Self.FK_Hasta_Cinsiyet_CID" FromRole="Hasta" ToRole="Cinsiyet" />
+          <NavigationProperty Name="Randevu" Relationship="Self.FK_Randevu_Hasta_HastaID" FromRole="Hasta" ToRole="Randevu" />
+        </EntityType>
+        <EntityType Name="Hizmet">
+          <Key>
+            <PropertyRef Name="H_ID" />
+          </Key>
+          <Property Name="H_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="H_AD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Randevu" Relationship="Self.FK_Randevu_Hizmet_HizmetID" FromRole="Hizmet" ToRole="Randevu" />
+        </EntityType>
+        <EntityType Name="Personel">
+          <Key>
+            <PropertyRef Name="P_ID" />
+          </Key>
+          <Property Name="P_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="P_AD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="P_SOYAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="P_DTARIH" Type="DateTime" Precision="0" />
+          <Property Name="P_TC" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="P_TEL" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="P_ADRES" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="P_EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="P_SIFRE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="P_CID" Type="Byte" />
+          <NavigationProperty Name="Cinsiyet" Relationship="Self.FK_Personel_Cinsiyet_CID" FromRole="Personel" ToRole="Cinsiyet" />
+          <NavigationProperty Name="Randevu" Relationship="Self.FK_Randevu_Personel_PersonelID" FromRole="Personel" ToRole="Randevu" />
+        </EntityType>
+        <EntityType Name="Randevu">
+          <Key>
+            <PropertyRef Name="R_ID" />
+          </Key>
+          <Property Name="R_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="R_PERSONELID" Type="Int32" />
+          <Property Name="R_HASTAID" Type="Int32" />
+          <Property Name="R_HIZMETID" Type="Int32" />
+          <Property Name="R_DURUMID" Type="Byte" />
+          <Property Name="R_TARIH" Type="DateTime" Precision="0" />
+          <Property Name="R_ACIKLAMA" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Hasta" Relationship="Self.FK_Randevu_Hasta_HastaID" FromRole="Randevu" ToRole="Hasta" />
+          <NavigationProperty Name="Hizmet" Relationship="Self.FK_Randevu_Hizmet_HizmetID" FromRole="Randevu" ToRole="Hizmet" />
+          <NavigationProperty Name="Personel" Relationship="Self.FK_Randevu_Personel_PersonelID" FromRole="Randevu" ToRole="Personel" />
+          <NavigationProperty Name="RDurum" Relationship="Self.FK_Randevu_RDurum_DurumID" FromRole="Randevu" ToRole="RDurum" />
+          <NavigationProperty Name="RSonuc" Relationship="Self.FK_RSonuc_Randevu_RandevuID" FromRole="Randevu" ToRole="RSonuc" />
+        </EntityType>
+        <EntityType Name="RDurum">
+          <Key>
+            <PropertyRef Name="D_ID" />
+          </Key>
+          <Property Name="D_ID" Type="Byte" Nullable="false" />
+          <Property Name="D_AD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Randevu" Relationship="Self.FK_Randevu_RDurum_DurumID" FromRole="RDurum" ToRole="Randevu" />
+        </EntityType>
+        <EntityType Name="RSonuc">
+          <Key>
+            <PropertyRef Name="S_ID" />
+          </Key>
+          <Property Name="S_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="S_RANDEVUID" Type="Int32" />
+          <Property Name="S_TURID" Type="Byte" />
+          <Property Name="S_ACIKLAMA" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Randevu" Relationship="Self.FK_RSonuc_Randevu_RandevuID" FromRole="RSonuc" ToRole="Randevu" />
+          <NavigationProperty Name="RSTur" Relationship="Self.FK_RSonuc_RSTur_TurID" FromRole="RSonuc" ToRole="RSTur" />
+        </EntityType>
+        <EntityType Name="RSTur">
+          <Key>
+            <PropertyRef Name="T_ID" />
+          </Key>
+          <Property Name="T_ID" Type="Byte" Nullable="false" />
+          <Property Name="T_AD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RSonuc" Relationship="Self.FK_RSonuc_RSTur_TurID" FromRole="RSTur" ToRole="RSonuc" />
+        </EntityType>
+        <Association Name="FK_Hasta_Cinsiyet_CID">
+          <End Role="Cinsiyet" Type="Self.Cinsiyet" Multiplicity="0..1" />
+          <End Role="Hasta" Type="Self.Hasta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cinsiyet">
+              <PropertyRef Name="C_ID" />
+            </Principal>
+            <Dependent Role="Hasta">
+              <PropertyRef Name="H_CID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Personel_Cinsiyet_CID">
+          <End Role="Cinsiyet" Type="Self.Cinsiyet" Multiplicity="0..1" />
+          <End Role="Personel" Type="Self.Personel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cinsiyet">
+              <PropertyRef Name="C_ID" />
+            </Principal>
+            <Dependent Role="Personel">
+              <PropertyRef Name="P_CID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Randevu_Hasta_HastaID">
+          <End Role="Hasta" Type="Self.Hasta" Multiplicity="0..1" />
+          <End Role="Randevu" Type="Self.Randevu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hasta">
+              <PropertyRef Name="H_ID" />
+            </Principal>
+            <Dependent Role="Randevu">
+              <PropertyRef Name="R_HASTAID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Randevu_Hizmet_HizmetID">
+          <End Role="Hizmet" Type="Self.Hizmet" Multiplicity="0..1" />
+          <End Role="Randevu" Type="Self.Randevu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hizmet">
+              <PropertyRef Name="H_ID" />
+            </Principal>
+            <Dependent Role="Randevu">
+              <PropertyRef Name="R_HIZMETID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Randevu_Personel_PersonelID">
+          <End Role="Personel" Type="Self.Personel" Multiplicity="0..1" />
+          <End Role="Randevu" Type="Self.Randevu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personel">
+              <PropertyRef Name="P_ID" />
+            </Principal>
+            <Dependent Role="Randevu">
+              <PropertyRef Name="R_PERSONELID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Randevu_RDurum_DurumID">
+          <End Role="RDurum" Type="Self.RDurum" Multiplicity="0..1" />
+          <End Role="Randevu" Type="Self.Randevu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RDurum">
+              <PropertyRef Name="D_ID" />
+            </Principal>
+            <Dependent Role="Randevu">
+              <PropertyRef Name="R_DURUMID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RSonuc_Randevu_RandevuID">
+          <End Role="Randevu" Type="Self.Randevu" Multiplicity="0..1" />
+          <End Role="RSonuc" Type="Self.RSonuc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Randevu">
+              <PropertyRef Name="R_ID" />
+            </Principal>
+            <Dependent Role="RSonuc">
+              <PropertyRef Name="S_RANDEVUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RSonuc_RSTur_TurID">
+          <End Role="RSTur" Type="Self.RSTur" Multiplicity="0..1" />
+          <End Role="RSonuc" Type="Self.RSonuc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RSTur">
+              <PropertyRef Name="T_ID" />
+            </Principal>
+            <Dependent Role="RSonuc">
+              <PropertyRef Name="S_TURID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KlinikDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cinsiyet" EntityType="Self.Cinsiyet" />
+          <EntitySet Name="Hasta" EntityType="Self.Hasta" />
+          <EntitySet Name="Hizmet" EntityType="Self.Hizmet" />
+          <EntitySet Name="Personel" EntityType="Self.Personel" />
+          <EntitySet Name="Randevu" EntityType="Self.Randevu" />
+          <EntitySet Name="RDurum" EntityType="Self.RDurum" />
+          <EntitySet Name="RSonuc" EntityType="Self.RSonuc" />
+          <EntitySet Name="RSTur" EntityType="Self.RSTur" />
+          <AssociationSet Name="FK_Hasta_Cinsiyet_CID" Association="Self.FK_Hasta_Cinsiyet_CID">
+            <End Role="Cinsiyet" EntitySet="Cinsiyet" />
+            <End Role="Hasta" EntitySet="Hasta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Personel_Cinsiyet_CID" Association="Self.FK_Personel_Cinsiyet_CID">
+            <End Role="Cinsiyet" EntitySet="Cinsiyet" />
+            <End Role="Personel" EntitySet="Personel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Randevu_Hasta_HastaID" Association="Self.FK_Randevu_Hasta_HastaID">
+            <End Role="Hasta" EntitySet="Hasta" />
+            <End Role="Randevu" EntitySet="Randevu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Randevu_Hizmet_HizmetID" Association="Self.FK_Randevu_Hizmet_HizmetID">
+            <End Role="Hizmet" EntitySet="Hizmet" />
+            <End Role="Randevu" EntitySet="Randevu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Randevu_Personel_PersonelID" Association="Self.FK_Randevu_Personel_PersonelID">
+            <End Role="Personel" EntitySet="Personel" />
+            <End Role="Randevu" EntitySet="Randevu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Randevu_RDurum_DurumID" Association="Self.FK_Randevu_RDurum_DurumID">
+            <End Role="RDurum" EntitySet="RDurum" />
+            <End Role="Randevu" EntitySet="Randevu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RSonuc_Randevu_RandevuID" Association="Self.FK_RSonuc_Randevu_RandevuID">
+            <End Role="Randevu" EntitySet="Randevu" />
+            <End Role="RSonuc" EntitySet="RSonuc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RSonuc_RSTur_TurID" Association="Self.FK_RSonuc_RSTur_TurID">
+            <End Role="RSTur" EntitySet="RSTur" />
+            <End Role="RSonuc" EntitySet="RSonuc" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KlinikDBModelStoreContainer" CdmEntityContainer="KlinikDBEntities">
+          <EntitySetMapping Name="Cinsiyet">
+            <EntityTypeMapping TypeName="KlinikDBModel.Cinsiyet">
+              <MappingFragment StoreEntitySet="Cinsiyet">
+                <ScalarProperty Name="C_ID" ColumnName="C_ID" />
+                <ScalarProperty Name="Cinsiyet1" ColumnName="Cinsiyet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hasta">
+            <EntityTypeMapping TypeName="KlinikDBModel.Hasta">
+              <MappingFragment StoreEntitySet="Hasta">
+                <ScalarProperty Name="H_ID" ColumnName="H_ID" />
+                <ScalarProperty Name="H_AD" ColumnName="H_AD" />
+                <ScalarProperty Name="H_SOYAD" ColumnName="H_SOYAD" />
+                <ScalarProperty Name="H_DTARIH" ColumnName="H_DTARIH" />
+                <ScalarProperty Name="H_TC" ColumnName="H_TC" />
+                <ScalarProperty Name="H_TEL" ColumnName="H_TEL" />
+                <ScalarProperty Name="H_ADRES" ColumnName="H_ADRES" />
+                <ScalarProperty Name="H_CID" ColumnName="H_CID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hizmet">
+            <EntityTypeMapping TypeName="KlinikDBModel.Hizmet">
+              <MappingFragment StoreEntitySet="Hizmet">
+                <ScalarProperty Name="H_ID" ColumnName="H_ID" />
+                <ScalarProperty Name="H_AD" ColumnName="H_AD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personel">
+            <EntityTypeMapping TypeName="KlinikDBModel.Personel">
+              <MappingFragment StoreEntitySet="Personel">
+                <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+                <ScalarProperty Name="P_AD" ColumnName="P_AD" />
+                <ScalarProperty Name="P_SOYAD" ColumnName="P_SOYAD" />
+                <ScalarProperty Name="P_DTARIH" ColumnName="P_DTARIH" />
+                <ScalarProperty Name="P_TC" ColumnName="P_TC" />
+                <ScalarProperty Name="P_TEL" ColumnName="P_TEL" />
+                <ScalarProperty Name="P_ADRES" ColumnName="P_ADRES" />
+                <ScalarProperty Name="P_EMAIL" ColumnName="P_EMAIL" />
+                <ScalarProperty Name="P_SIFRE" ColumnName="P_SIFRE" />
+                <ScalarProperty Name="P_CID" ColumnName="P_CID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Randevu">
+            <EntityTypeMapping TypeName="KlinikDBModel.Randevu">
+              <MappingFragment StoreEntitySet="Randevu">
+                <ScalarProperty Name="R_ID" ColumnName="R_ID" />
+                <ScalarProperty Name="R_PERSONELID" ColumnName="R_PERSONELID" />
+                <ScalarProperty Name="R_HASTAID" ColumnName="R_HASTAID" />
+                <ScalarProperty Name="R_HIZMETID" ColumnName="R_HIZMETID" />
+                <ScalarProperty Name="R_DURUMID" ColumnName="R_DURUMID" />
+                <ScalarProperty Name="R_TARIH" ColumnName="R_TARIH" />
+                <ScalarProperty Name="R_ACIKLAMA" ColumnName="R_ACIKLAMA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RDurum">
+            <EntityTypeMapping TypeName="KlinikDBModel.RDurum">
+              <MappingFragment StoreEntitySet="RDurum">
+                <ScalarProperty Name="D_ID" ColumnName="D_ID" />
+                <ScalarProperty Name="D_AD" ColumnName="D_AD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RSonuc">
+            <EntityTypeMapping TypeName="KlinikDBModel.RSonuc">
+              <MappingFragment StoreEntitySet="RSonuc">
+                <ScalarProperty Name="S_ID" ColumnName="S_ID" />
+                <ScalarProperty Name="S_RANDEVUID" ColumnName="S_RANDEVUID" />
+                <ScalarProperty Name="S_TURID" ColumnName="S_TURID" />
+                <ScalarProperty Name="S_ACIKLAMA" ColumnName="S_ACIKLAMA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RSTur">
+            <EntityTypeMapping TypeName="KlinikDBModel.RSTur">
+              <MappingFragment StoreEntitySet="RSTur">
+                <ScalarProperty Name="T_ID" ColumnName="T_ID" />
+                <ScalarProperty Name="T_AD" ColumnName="T_AD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
