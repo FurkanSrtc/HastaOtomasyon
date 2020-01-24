@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace KlinikApp
 {
-    public partial class Form1 : Form
+    public partial class Seans : Form
     {
-        public Form1()
+        public Seans()
         {
             InitializeComponent();
+        }
+
+        private void Seans_Load(object sender, EventArgs e)
+        {
+            //burda gerekli türe göre içerik doldurucak. ardından ekle diyip o randevuya bilgiler ekleyebilicek.
         }
     }
 }

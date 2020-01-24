@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace KlinikApp
 {
-    public partial class Sekreterlik : Form
+    public partial class Randevuekle : Form
     {
-        public Sekreterlik()
+        public Randevuekle()
         {
             InitializeComponent();
+        }
+
+        private void Randevuekle_Load(object sender, EventArgs e)
+        {
+            //Randevu Ekleme Ve Güncelleme
         }
     }
 }

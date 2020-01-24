@@ -16,7 +16,34 @@ namespace KlinikApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Sekreterlik());
+            Application.Run(new Main());
         }
     }
 }
+
+/*
+Login - Giriş Sayfası (db kontrol, diğer formlarda giriş yapan kişinin pozisyon bilgisi tutulcak ve ona göre aktarma yapıcak.)
+Yetkilş Paneli - Yönlendirme Sayfası(yapıcağı işlemi seçebilicek. kendi panelini görüp takip yapabilecek)
+Yetkisiz Paneli - Yönlendirme Sayfası(yapacağı işlemi seçebilecek. kendi panelini görüp takip yapabilecek)
+Hasta - Hasta Bilgileri Sayfası(Hasta bilgilerini çekicek. eğer çeken kişi yetkiliyse randevu sonuc bilgilerinide çekicek)
+Randevu - Randevu Bilgileri Sayfası(Randevuları çekicek)
+Seans - Randevu Anında Açık Olan Sayfa(sadece yetkili kişi girebilecek. randevu ile ilgili işlemler yapılcak)
+EkleveGuncelle - Hasta veya Randevu Ekleme veya Guncelleme Sayfası
+
+
+
+
+
+    login
+    main
+    seans
+    randevu
+    hasta
+    hastabilgi
+
+    hastaekle
+    randevuekle
+
+    
+
+*/
