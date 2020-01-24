@@ -1,5 +1,3 @@
-Create database KlinikDB
-
 use KlinikDB
 
 Create Table Hasta (
@@ -10,6 +8,7 @@ H_DTARIH date,
 H_TC char(11),
 H_TEL varchar(13),
 H_ADRES nvarchar(255),
+H_DURUM bit,
 H_CID tinyint
 )
 
@@ -28,7 +27,14 @@ P_TEL varchar(13),
 P_ADRES varchar(255),
 P_EMAIL varchar(50),
 P_SIFRE nvarchar(50),
-P_CID tinyint
+P_CID tinyint,
+P_DURUM bit,
+P_POZISYONID tinyint
+)
+
+create table Pozisyon(
+P_ID tinyint primary key,
+P_AD varchar(50),
 )
 
 create table Hizmet(
@@ -56,15 +62,12 @@ S_ID int identity(1,1) primary key,
 S_RANDEVUID int,
 S_TURID tinyint,
 S_ACIKLAMA varchar(500),
-
 )
 
 create table RSTur(
 T_ID tinyint primary key,
 T_AD varchar(50),
-
 )
-
 
 Alter table Hasta add constraint FK_Hasta_Cinsiyet_CID
 Foreign Key (H_CID) references Cinsiyet(C_ID)
@@ -89,3 +92,6 @@ Foreign Key (S_RANDEVUID) references Randevu(R_ID)
 
 Alter table RSonuc add constraint FK_RSonuc_RSTur_TurID
 Foreign Key (S_TURID) references RSTur(T_ID)
+
+Alter table Personel add constraint FK_Personel_Pozisyon_PozisyonID
+Foreign Key (P_POZISYONID) references Pozisyon(P_ID)
