@@ -33,18 +33,18 @@
             this.hastaDetayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.randevuDetayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ekleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.randevuEkleToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.araTxt = new System.Windows.Forms.ComboBox();
             this.araBtn = new System.Windows.Forms.Button();
             this.dataTxt = new System.Windows.Forms.TextBox();
             this.dataDate = new System.Windows.Forms.DateTimePicker();
             this.dataCombo = new System.Windows.Forms.ComboBox();
             this.randevuData = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.araTxt = new System.Windows.Forms.ComboBox();
-            this.randevuEkleToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.topMenu.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -77,13 +77,13 @@
             // hastaDetayToolStripMenuItem
             // 
             this.hastaDetayToolStripMenuItem.Name = "hastaDetayToolStripMenuItem";
-            this.hastaDetayToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.hastaDetayToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.hastaDetayToolStripMenuItem.Text = "Hasta Detay";
             // 
             // randevuDetayToolStripMenuItem
             // 
             this.randevuDetayToolStripMenuItem.Name = "randevuDetayToolStripMenuItem";
-            this.randevuDetayToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.randevuDetayToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.randevuDetayToolStripMenuItem.Text = "Randevu Detay";
             // 
             // ekleToolStripMenuItem
@@ -91,6 +91,12 @@
             this.ekleToolStripMenuItem.Name = "ekleToolStripMenuItem";
             this.ekleToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
             this.ekleToolStripMenuItem.Text = "Hasta Ekle";
+            // 
+            // randevuEkleToolStripMenuItem1
+            // 
+            this.randevuEkleToolStripMenuItem1.Name = "randevuEkleToolStripMenuItem1";
+            this.randevuEkleToolStripMenuItem1.Size = new System.Drawing.Size(89, 20);
+            this.randevuEkleToolStripMenuItem1.Text = "Randevu Ekle";
             // 
             // tabControl1
             // 
@@ -118,6 +124,22 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Randevular";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // araTxt
+            // 
+            this.araTxt.FormattingEnabled = true;
+            this.araTxt.Items.AddRange(new object[] {
+            "Tümü",
+            "Hastanın Adı",
+            "Personel Adı",
+            "Randevu Durumu",
+            "Randevu Tarihi",
+            "Randevu Hizmeti"});
+            this.araTxt.Location = new System.Drawing.Point(8, 8);
+            this.araTxt.Name = "araTxt";
+            this.araTxt.Size = new System.Drawing.Size(170, 21);
+            this.araTxt.TabIndex = 6;
+            this.araTxt.SelectedIndexChanged += new System.EventHandler(this.araTxt_SelectedIndexChanged);
             // 
             // araBtn
             // 
@@ -175,27 +197,13 @@
             this.tabPage2.Text = "Hastalar";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // araTxt
+            // dataGridView1
             // 
-            this.araTxt.FormattingEnabled = true;
-            this.araTxt.Items.AddRange(new object[] {
-            "Tümü",
-            "Hastanın Adı",
-            "Personel Adı",
-            "Randevu Durumu",
-            "Randevu Tarihi",
-            "Randevu Hizmeti"});
-            this.araTxt.Location = new System.Drawing.Point(8, 8);
-            this.araTxt.Name = "araTxt";
-            this.araTxt.Size = new System.Drawing.Size(170, 21);
-            this.araTxt.TabIndex = 6;
-            this.araTxt.SelectedIndexChanged += new System.EventHandler(this.araTxt_SelectedIndexChanged);
-            // 
-            // randevuEkleToolStripMenuItem1
-            // 
-            this.randevuEkleToolStripMenuItem1.Name = "randevuEkleToolStripMenuItem1";
-            this.randevuEkleToolStripMenuItem1.Size = new System.Drawing.Size(89, 20);
-            this.randevuEkleToolStripMenuItem1.Text = "Randevu Ekle";
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(8, 37);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(778, 357);
+            this.dataGridView1.TabIndex = 12;
             // 
             // comboBox1
             // 
@@ -211,14 +219,6 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(170, 21);
             this.comboBox1.TabIndex = 11;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(8, 37);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(778, 357);
-            this.dataGridView1.TabIndex = 12;
             // 
             // Main
             // 
