@@ -19,7 +19,7 @@ namespace KlinikApp
 
         private void Hastabilgi_Load(object sender, EventArgs e)
         {
-            //Hastanın Hangi Bilgileri Var, Şikayet-Tedavi vb.
+            //Hastanın Hangi Bilgileri Var, Şikayet-Tedavi vb..
         }
     }
 }
