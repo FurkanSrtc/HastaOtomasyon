@@ -106,6 +106,9 @@
     <Compile Include="Model\Personel.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Pozisyon.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Randevu.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -125,6 +128,12 @@
     </Compile>
     <Compile Include="Randevuekle.Designer.cs">
       <DependentUpon>Randevuekle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RandevuSonuc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RandevuSonuc.Designer.cs">
+      <DependentUpon>RandevuSonuc.cs</DependentUpon>
     </Compile>
     <Compile Include="Seans.cs">
       <SubType>Form</SubType>
@@ -155,6 +164,9 @@
     </Compile>
     <EmbeddedResource Include="Randevuekle.resx">
       <DependentUpon>Randevuekle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RandevuSonuc.resx">
+      <DependentUpon>RandevuSonuc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Seans.resx">
       <DependentUpon>Seans.cs</DependentUpon>

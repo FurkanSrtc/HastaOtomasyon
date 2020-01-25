@@ -30,8 +30,11 @@ namespace KlinikApp.Model
         public string P_EMAIL { get; set; }
         public string P_SIFRE { get; set; }
         public Nullable<byte> P_CID { get; set; }
+        public Nullable<byte> P_POZISYONID { get; set; }
+        public Nullable<bool> P_DURUM { get; set; }
     
         public virtual Cinsiyet Cinsiyet { get; set; }
+        public virtual Pozisyon Pozisyon { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Randevu> Randevu { get; set; }
     }

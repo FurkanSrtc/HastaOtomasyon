@@ -12,8 +12,10 @@ namespace KlinikApp
 {
     public partial class Main : Form
     {
-        public Main()
+        byte personelPozisyon;
+        public Main(byte? p)
         {
+            personelPozisyon = Convert.ToByte(p);
             InitializeComponent();
         }
 
@@ -22,6 +24,10 @@ namespace KlinikApp
 
         private void Main_Load(object sender, EventArgs e)
         {
+            if (personelPozisyon == 2) // Üye Girişi Yapan Kişi Danışman İse
+            {
+
+            }
             // yetkili biri değilse bu çalışıcak topMenu.Items[0].Visible = false;
             Invisible();
         }

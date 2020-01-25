@@ -12,21 +12,18 @@ namespace KlinikApp.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Cinsiyet
+    public partial class Pozisyon
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Cinsiyet()
+        public Pozisyon()
         {
             this.Personel = new HashSet<Personel>();
-            this.Hasta = new HashSet<Hasta>();
         }
     
-        public byte C_ID { get; set; }
-        public string Cinsiyet1 { get; set; }
+        public byte P_ID { get; set; }
+        public string P_AD { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Personel> Personel { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Hasta> Hasta { get; set; }
     }
 }

@@ -4,23 +4,25 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1ff14995011246099b17d85f6495cb75" Name="Diagram1">
-        <EntityTypeShape EntityType="KlinikDBModel.Cinsiyet" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="KlinikDBModel.Hasta" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="KlinikDBModel.Hizmet" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="KlinikDBModel.Personel" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="KlinikDBModel.Randevu" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="KlinikDBModel.RDurum" Width="1.5" PointX="3" PointY="13.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="KlinikDBModel.RSonuc" Width="1.5" PointX="7.5" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="KlinikDBModel.RSTur" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="KlinikDBModel.FK_Hasta_Cinsiyet_CID" ManuallyRouted="false" />
-        <AssociationConnector Association="KlinikDBModel.FK_Personel_Cinsiyet_CID" ManuallyRouted="false" />
-        <AssociationConnector Association="KlinikDBModel.FK_Randevu_Hasta_HastaID" ManuallyRouted="false" />
-        <AssociationConnector Association="KlinikDBModel.FK_Randevu_Hizmet_HizmetID" ManuallyRouted="false" />
-        <AssociationConnector Association="KlinikDBModel.FK_Randevu_Personel_PersonelID" ManuallyRouted="false" />
-        <AssociationConnector Association="KlinikDBModel.FK_Randevu_RDurum_DurumID" ManuallyRouted="false" />
-        <AssociationConnector Association="KlinikDBModel.FK_RSonuc_Randevu_RandevuID" ManuallyRouted="false" />
-        <AssociationConnector Association="KlinikDBModel.FK_RSonuc_RSTur_TurID" ManuallyRouted="false" />
+      <Diagram DiagramId="1ff14995011246099b17d85f6495cb75" Name="Diagram1" ZoomLevel="67">
+        <EntityTypeShape EntityType="KlinikDBModel.Cinsiyet" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="KlinikDBModel.Hizmet" Width="1.5" PointX="3" PointY="13.125" />
+        <EntityTypeShape EntityType="KlinikDBModel.Personel" Width="1.5" PointX="3" PointY="3.625" />
+        <EntityTypeShape EntityType="KlinikDBModel.Pozisyon" Width="1.5" PointX="0.75" PointY="1.75" />
+        <EntityTypeShape EntityType="KlinikDBModel.Randevu" Width="1.5" PointX="5.25" PointY="6" />
+        <EntityTypeShape EntityType="KlinikDBModel.RDurum" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="KlinikDBModel.RSonuc" Width="1.5" PointX="7.5" PointY="6.625" />
+        <EntityTypeShape EntityType="KlinikDBModel.RSTur" Width="1.5" PointX="5.25" PointY="2.875" />
+        <AssociationConnector Association="KlinikDBModel.FK_Personel_Cinsiyet_CID" />
+        <AssociationConnector Association="KlinikDBModel.FK_Randevu_Hizmet_HizmetID" />
+        <AssociationConnector Association="KlinikDBModel.FK_Personel_Pozisyon_PozisyonID" />
+        <AssociationConnector Association="KlinikDBModel.FK_Randevu_Personel_PersonelID" />
+        <AssociationConnector Association="KlinikDBModel.FK_Randevu_RDurum_DurumID" />
+        <AssociationConnector Association="KlinikDBModel.FK_RSonuc_Randevu_RandevuID" />
+        <AssociationConnector Association="KlinikDBModel.FK_RSonuc_RSTur_TurID" />
+        <EntityTypeShape EntityType="KlinikDBModel.Hasta" Width="1.5" PointX="3" PointY="9" />
+        <AssociationConnector Association="KlinikDBModel.FK_Hasta_Cinsiyet_CID" />
+        <AssociationConnector Association="KlinikDBModel.FK_Randevu_Hasta_HastaID" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

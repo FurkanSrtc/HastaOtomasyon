@@ -28,69 +28,93 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.mailTxt = new System.Windows.Forms.TextBox();
-            this.sifreTxt = new System.Windows.Forms.TextBox();
-            this.loginBtn = new System.Windows.Forms.Button();
+            this.txtMail = new System.Windows.Forms.TextBox();
+            this.txtSifre = new System.Windows.Forms.TextBox();
+            this.btnLogin = new System.Windows.Forms.Button();
             this.sifreLink = new System.Windows.Forms.LinkLabel();
-            this.mailRadio = new System.Windows.Forms.RadioButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cboxBeniHatirla = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
-            // mailTxt
+            // txtMail
             // 
-            this.mailTxt.Location = new System.Drawing.Point(12, 12);
-            this.mailTxt.Name = "mailTxt";
-            this.mailTxt.Size = new System.Drawing.Size(122, 20);
-            this.mailTxt.TabIndex = 0;
+            this.txtMail.Location = new System.Drawing.Point(34, 53);
+            this.txtMail.Name = "txtMail";
+            this.txtMail.Size = new System.Drawing.Size(174, 20);
+            this.txtMail.TabIndex = 0;
             // 
-            // sifreTxt
+            // txtSifre
             // 
-            this.sifreTxt.Location = new System.Drawing.Point(12, 38);
-            this.sifreTxt.Name = "sifreTxt";
-            this.sifreTxt.Size = new System.Drawing.Size(122, 20);
-            this.sifreTxt.TabIndex = 1;
+            this.txtSifre.Location = new System.Drawing.Point(34, 126);
+            this.txtSifre.Name = "txtSifre";
+            this.txtSifre.Size = new System.Drawing.Size(174, 20);
+            this.txtSifre.TabIndex = 1;
+            this.txtSifre.UseSystemPasswordChar = true;
             // 
-            // loginBtn
+            // btnLogin
             // 
-            this.loginBtn.Location = new System.Drawing.Point(12, 64);
-            this.loginBtn.Name = "loginBtn";
-            this.loginBtn.Size = new System.Drawing.Size(122, 20);
-            this.loginBtn.TabIndex = 2;
-            this.loginBtn.Text = "button1";
-            this.loginBtn.UseVisualStyleBackColor = true;
+            this.btnLogin.Location = new System.Drawing.Point(34, 238);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(174, 44);
+            this.btnLogin.TabIndex = 2;
+            this.btnLogin.Text = "Giriş";
+            this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.BtnLogin_Click);
             // 
             // sifreLink
             // 
             this.sifreLink.AutoSize = true;
-            this.sifreLink.Location = new System.Drawing.Point(12, 110);
+            this.sifreLink.Location = new System.Drawing.Point(31, 318);
             this.sifreLink.Name = "sifreLink";
             this.sifreLink.Size = new System.Drawing.Size(81, 13);
             this.sifreLink.TabIndex = 3;
             this.sifreLink.TabStop = true;
             this.sifreLink.Text = "Şifremi Unuttum";
             // 
-            // mailRadio
+            // label1
             // 
-            this.mailRadio.AutoSize = true;
-            this.mailRadio.Location = new System.Drawing.Point(12, 90);
-            this.mailRadio.Name = "mailRadio";
-            this.mailRadio.Size = new System.Drawing.Size(87, 17);
-            this.mailRadio.TabIndex = 4;
-            this.mailRadio.TabStop = true;
-            this.mailRadio.Text = "E-Mail Hatırla";
-            this.mailRadio.UseVisualStyleBackColor = true;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(34, 34);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(58, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Mail Adresi";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(34, 110);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(28, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Şifre";
+            // 
+            // cboxBeniHatirla
+            // 
+            this.cboxBeniHatirla.AutoSize = true;
+            this.cboxBeniHatirla.Location = new System.Drawing.Point(34, 288);
+            this.cboxBeniHatirla.Name = "cboxBeniHatirla";
+            this.cboxBeniHatirla.Size = new System.Drawing.Size(80, 17);
+            this.cboxBeniHatirla.TabIndex = 7;
+            this.cboxBeniHatirla.Text = "Beni Hatırla";
+            this.cboxBeniHatirla.UseVisualStyleBackColor = true;
             // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(149, 137);
-            this.Controls.Add(this.mailRadio);
+            this.ClientSize = new System.Drawing.Size(253, 355);
+            this.Controls.Add(this.cboxBeniHatirla);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.sifreLink);
-            this.Controls.Add(this.loginBtn);
-            this.Controls.Add(this.sifreTxt);
-            this.Controls.Add(this.mailTxt);
+            this.Controls.Add(this.btnLogin);
+            this.Controls.Add(this.txtSifre);
+            this.Controls.Add(this.txtMail);
             this.Name = "Login";
             this.Text = "Login";
+            this.Load += new System.EventHandler(this.Login_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -98,10 +122,12 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox mailTxt;
-        private System.Windows.Forms.TextBox sifreTxt;
-        private System.Windows.Forms.Button loginBtn;
+        private System.Windows.Forms.TextBox txtMail;
+        private System.Windows.Forms.TextBox txtSifre;
+        private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.LinkLabel sifreLink;
-        private System.Windows.Forms.RadioButton mailRadio;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox cboxBeniHatirla;
     }
 }

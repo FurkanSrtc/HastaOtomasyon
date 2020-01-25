@@ -26,12 +26,13 @@ namespace KlinikApp.Model
         }
     
         public virtual DbSet<Cinsiyet> Cinsiyet { get; set; }
-        public virtual DbSet<Hasta> Hasta { get; set; }
         public virtual DbSet<Hizmet> Hizmet { get; set; }
         public virtual DbSet<Personel> Personel { get; set; }
+        public virtual DbSet<Pozisyon> Pozisyon { get; set; }
         public virtual DbSet<Randevu> Randevu { get; set; }
         public virtual DbSet<RDurum> RDurum { get; set; }
         public virtual DbSet<RSonuc> RSonuc { get; set; }
         public virtual DbSet<RSTur> RSTur { get; set; }
+        public virtual DbSet<Hasta> Hasta { get; set; }
     }
 }

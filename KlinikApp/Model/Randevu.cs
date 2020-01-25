@@ -28,11 +28,11 @@ namespace KlinikApp.Model
         public Nullable<System.DateTime> R_TARIH { get; set; }
         public string R_ACIKLAMA { get; set; }
     
-        public virtual Hasta Hasta { get; set; }
         public virtual Hizmet Hizmet { get; set; }
         public virtual Personel Personel { get; set; }
         public virtual RDurum RDurum { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RSonuc> RSonuc { get; set; }
+        public virtual Hasta Hasta { get; set; }
     }
 }

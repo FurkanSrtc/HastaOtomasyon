@@ -28,6 +28,8 @@ namespace KlinikApp.Model
         public string H_TEL { get; set; }
         public string H_ADRES { get; set; }
         public Nullable<byte> H_CID { get; set; }
+        public Nullable<bool> H_DURUM { get; set; }
+        public string H_EMAIL { get; set; }
     
         public virtual Cinsiyet Cinsiyet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
