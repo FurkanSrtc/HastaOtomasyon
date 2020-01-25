@@ -22,7 +22,7 @@ namespace KlinikApp
 
         private void Main_Load(object sender, EventArgs e)
         {
-            // yetkili biri değilse bu çalışıcak topMenu.Items[0].Visible = false;
+            // yetkili biri değilse datagridview right click menu içinde Hasta detay - Randevu detayı göremicek.
             Invisible();
         }
 

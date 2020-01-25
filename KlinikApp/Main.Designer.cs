@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             this.topMenu = new System.Windows.Forms.MenuStrip();
-            this.detayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hastaDetayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.randevuDetayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ekleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.randevuEkleToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -56,7 +53,6 @@
             // topMenu
             // 
             this.topMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.detayToolStripMenuItem,
             this.ekleToolStripMenuItem,
             this.randevuEkleToolStripMenuItem1});
             this.topMenu.Location = new System.Drawing.Point(0, 0);
@@ -64,27 +60,6 @@
             this.topMenu.Size = new System.Drawing.Size(800, 24);
             this.topMenu.TabIndex = 6;
             this.topMenu.Text = "menuStrip1";
-            // 
-            // detayToolStripMenuItem
-            // 
-            this.detayToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.hastaDetayToolStripMenuItem,
-            this.randevuDetayToolStripMenuItem});
-            this.detayToolStripMenuItem.Name = "detayToolStripMenuItem";
-            this.detayToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
-            this.detayToolStripMenuItem.Text = "Detay";
-            // 
-            // hastaDetayToolStripMenuItem
-            // 
-            this.hastaDetayToolStripMenuItem.Name = "hastaDetayToolStripMenuItem";
-            this.hastaDetayToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
-            this.hastaDetayToolStripMenuItem.Text = "Hasta Detay";
-            // 
-            // randevuDetayToolStripMenuItem
-            // 
-            this.randevuDetayToolStripMenuItem.Name = "randevuDetayToolStripMenuItem";
-            this.randevuDetayToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
-            this.randevuDetayToolStripMenuItem.Text = "Randevu Detay";
             // 
             // ekleToolStripMenuItem
             // 
@@ -246,9 +221,6 @@
 
         #endregion
         private System.Windows.Forms.MenuStrip topMenu;
-        private System.Windows.Forms.ToolStripMenuItem detayToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem hastaDetayToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem randevuDetayToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ekleToolStripMenuItem;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;

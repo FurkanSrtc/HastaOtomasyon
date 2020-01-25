@@ -55,6 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Randevubilgi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Randevubilgi.Designer.cs">
+      <DependentUpon>Randevubilgi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Hastabilgi.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -153,6 +159,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Randevubilgi.resx">
+      <DependentUpon>Randevubilgi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Randevuekle.resx">
       <DependentUpon>Randevuekle.cs</DependentUpon>
     </EmbeddedResource>
