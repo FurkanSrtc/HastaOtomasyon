@@ -50,6 +50,7 @@
             this.listRSTur = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.bynSil = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -212,7 +213,7 @@
             // 
             this.btnGuncelle.Location = new System.Drawing.Point(6, 259);
             this.btnGuncelle.Name = "btnGuncelle";
-            this.btnGuncelle.Size = new System.Drawing.Size(355, 32);
+            this.btnGuncelle.Size = new System.Drawing.Size(180, 32);
             this.btnGuncelle.TabIndex = 37;
             this.btnGuncelle.Text = "Güncelle";
             this.btnGuncelle.UseVisualStyleBackColor = true;
@@ -246,11 +247,22 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(467, 260);
             this.flowLayoutPanel1.TabIndex = 39;
             // 
+            // bynSil
+            // 
+            this.bynSil.Location = new System.Drawing.Point(192, 259);
+            this.bynSil.Name = "bynSil";
+            this.bynSil.Size = new System.Drawing.Size(169, 32);
+            this.bynSil.TabIndex = 40;
+            this.bynSil.Text = "Sil";
+            this.bynSil.UseVisualStyleBackColor = true;
+            this.bynSil.Click += new System.EventHandler(this.BynSil_Click);
+            // 
             // Hastaekle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1088, 652);
+            this.Controls.Add(this.bynSil);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnGuncelle);
             this.Controls.Add(this.label8);
@@ -305,5 +317,6 @@
         private System.Windows.Forms.ListBox listRSTur;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button bynSil;
     }
 }

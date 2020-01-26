@@ -21,6 +21,7 @@ namespace KlinikApp
         private void Hastaekle_Load(object sender, EventArgs e)
         {
             btnGuncelle.Visible = false;
+            bynSil.Visible = false;
             //Ekleme Güncelleme İşlemeri İçin Kullanılıcak.
             //datagridviewde Randevusonucları gözükücek.
             //hastalar tablosundan seçilen kişi güncelleme için veya ekleme işlem için kullanılacak.
@@ -42,22 +43,28 @@ namespace KlinikApp
             //Veriye tıklandığında satır seçimi sağlama.
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-            var data= from d in db.Hasta.Where(d => d.H_DURUM == true).OrderBy(d => d.H_AD)
-                      select new
-                      {Id=d.H_ID,
-                          Ad = d.H_AD,
-                          Soyad= d.H_SOYAD,
-                          TC = d.H_TC,
-                          Telefon = d.H_TEL,
-                          DogumTarihi = d.H_DTARIH,
-                          EMail = d.H_EMAIL,
-                          Adres=d.H_ADRES,
-                          Cinsiyet=d.Cinsiyet.Cinsiyet1
-                      };
+            DataGridYenile();
+
+        }
+
+        private void DataGridYenile()
+        {
+            var data = from d in db.Hasta.Where(d => d.H_DURUM == true).OrderBy(d => d.H_AD)
+                       select new
+                       {
+                           Id = d.H_ID,
+                           Ad = d.H_AD,
+                           Soyad = d.H_SOYAD,
+                           TC = d.H_TC,
+                           Telefon = d.H_TEL,
+                           DogumTarihi = d.H_DTARIH,
+                           EMail = d.H_EMAIL,
+                           Adres = d.H_ADRES,
+                           Cinsiyet = d.Cinsiyet.Cinsiyet1
+                       };
 
             dataGridView1.DataSource = data.ToList();
             dataGridView1.Columns[0].Visible = false;
-
         }
 
         Boolean yeniKayit = false;
@@ -70,6 +77,7 @@ namespace KlinikApp
                 Yenile();
                 btnEkle.Text = "Kaydet";
                 btnGuncelle.Visible = false;
+                bynSil.Visible = false;
                 yeniKayit = true;
             }
             else
@@ -119,7 +127,7 @@ namespace KlinikApp
             txtTC.Text = "";
             txtTel.Text = "";
         }
-        int secilenSatir;
+
         private void DataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -130,7 +138,7 @@ namespace KlinikApp
      
         private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-          
+            yeniKayit = false;
                 Yenile();
                 txtAd.Text = dataGridView1.CurrentRow.Cells[1].Value?.ToString();
                 txtSoyad.Text = dataGridView1.CurrentRow.Cells[2].Value?.ToString();
@@ -154,6 +162,7 @@ namespace KlinikApp
 
             btnEkle.Text = "Yeni Hasta";
             btnGuncelle.Visible = true;
+            bynSil.Visible = true;
             //-----------------------------------------------------------------------------------------
             int hastaId = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value);
 
@@ -171,28 +180,56 @@ namespace KlinikApp
 
         private void BtnGuncelle_Click(object sender, EventArgs e)
         {
+            int hastaId = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value);
+           Hasta yeniHasta= db.Hasta.Find(hastaId);
+         
+        
+            DialogResult dg = MessageBox.Show(yeniHasta.H_AD + " " + yeniHasta.H_SOYAD + " İsimli Hastanın Bilgilerini Güncellemek İstediğinize Emin Misiniz ?", "Hasta Güncelleme", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+            switch (dg)
+            {
 
+
+                case DialogResult.Yes:
+
+                    yeniHasta.H_CID = Convert.ToByte(cmbCinsiyet.SelectedIndex);
+                    yeniHasta.H_AD = txtAd.Text;
+                    yeniHasta.H_SOYAD = txtSoyad.Text;
+                    yeniHasta.H_EMAIL = txtEmail.Text;
+                    yeniHasta.H_ADRES = txtAdres.Text;
+                    yeniHasta.H_DTARIH = dateTimeDogumTarihi.Value;
+                    yeniHasta.H_DURUM = true;
+                    yeniHasta.H_TC = txtTC.Text;
+                    yeniHasta.H_TEL = txtTel.Text;
+                    db.SaveChanges();
+                    DataGridYenile();
+
+                    break;
+                case DialogResult.No:
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void DataGridView1_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
-            {
-                ContextMenu m = new ContextMenu();
-                m.MenuItems.Add(new MenuItem("Cut"));
-                m.MenuItems.Add(new MenuItem("Copy"));
-                m.MenuItems.Add(new MenuItem("Paste"));
+            //if (e.Button == MouseButtons.Right)
+            //{
+            //    ContextMenu m = new ContextMenu();
+            //    m.MenuItems.Add(new MenuItem("Cut"));
+            //    m.MenuItems.Add(new MenuItem("Copy"));
+            //    m.MenuItems.Add(new MenuItem("Paste"));
 
-                int currentMouseOverRow = dataGridView1.HitTest(e.X, e.Y).RowIndex;
+            //    int currentMouseOverRow = dataGridView1.HitTest(e.X, e.Y).RowIndex;
 
-                if (currentMouseOverRow >= 0)
-                {
-                    m.MenuItems.Add(new MenuItem(string.Format("Do something to row {0}", currentMouseOverRow.ToString())));
-                }
+            //    if (currentMouseOverRow >= 0)
+            //    {
+            //        m.MenuItems.Add(new MenuItem(string.Format("Do something to row {0}", currentMouseOverRow.ToString())));
+            //    }
 
-                m.Show(dataGridView1, new Point(e.X, e.Y));
+            //    m.Show(dataGridView1, new Point(e.X, e.Y));
 
-            }
+            //}
         }
 
         private void ListRSTur_MouseClick(object sender, MouseEventArgs e)
@@ -251,5 +288,27 @@ namespace KlinikApp
          
         }
 
+        private void BynSil_Click(object sender, EventArgs e)
+        {
+            int hastaId = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value);
+         
+            Hasta hastaSil = db.Hasta.Find(hastaId);
+           DialogResult dg= MessageBox.Show(hastaSil.H_AD+ " " + hastaSil.H_SOYAD+" İsimli Hastayı Silmek İstediğinize Emin Misiniz ?","Hasta Silme Ekranı",MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+            switch (dg)
+            {
+             
+           
+                case DialogResult.Yes:
+                    hastaSil.H_DURUM = false;
+                    db.SaveChanges();
+                    DataGridYenile();
+                    break;
+                case DialogResult.No:
+                    break;
+                default:
+                    break;
+            }
+          
+        }
     }
 }
