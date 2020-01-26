@@ -287,7 +287,7 @@ namespace KlinikApp
 
          
         }
-
+        //
         private void BynSil_Click(object sender, EventArgs e)
         {
             int hastaId = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value);
